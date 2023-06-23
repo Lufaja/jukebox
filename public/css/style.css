@@ -1,0 +1,31 @@
+#logo{
+    font-size: 25px;
+    margin-right: 25px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+.navbar{
+    position: relative;
+    display: flex;
+    padding: 20px;
+    background-color: black;
+    color: blue; 
+    overflow: hidden;
+}
+.navbar div{
+    padding: 5px;
+    margin-right: 5px; 
+    font-size: 25px;
+    /* background-image: -webkit-linear-gradient(45deg,#0e4db3, #64c2cd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+    background-image:linear-gradient(to right, #7559f7, #b205f1 33.33333%, #9693df 66.66666%, #4390ce);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 300% 100%;
+    background-position: top left;
+    transition:all 0.5s ease-in-out;
+}
+.navbar div:hover{
+    background-position: top left 100%;
+}
