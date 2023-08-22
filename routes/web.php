@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\IsLoggedIn;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\SongController;
@@ -34,18 +35,19 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('/getallusernames',[ProfileController::class, 'getAllUsers']);
+Route::middleware(IsLoggedIn::class)->group(function(){
+    Route::get('/genre/all',[GenreController::class, 'index'])->name('genre.index');
+    Route::get('/genre/create',[GenreController::class, 'create'])->name('genre.create');
+    Route::post('/genre/store',[GenreController::class, 'store'])->name('genre.store');
+    Route::get('/genre/destroy/{genre}',[GenreController::class, 'destroy'])->name('genre.destroy');
 
-Route::get('/genre/all',[GenreController::class, 'index'])->name('genre.index');
-Route::get('/genre/create',[GenreController::class, 'create'])->name('genre.create');
-Route::post('/genre/store',[GenreController::class, 'store'])->name('genre.store');
-Route::get('/genre/destroy/{genre}',[GenreController::class, 'destroy'])->name('genre.destroy');
+    Route::get('/playlist/all',[PlaylistController::class, 'index'])->name('playlist.index');
+    Route::get('/playlist/create',[PlaylistController::class, 'create'])->name('playlist.create');
+    Route::post('/playlist/store',[PlaylistController::class, 'store'])->name('playlist.store');
+    Route::get('/playlist/destroy/{playlist}',[PlaylistController::class, 'destroy'])->name('playlist.destroy');
 
-Route::get('/playlist/all',[PlaylistController::class, 'index'])->name('playlist.index');
-Route::get('/playlist/create',[PlaylistController::class, 'create'])->name('playlist.create');
-Route::post('/playlist/store',[PlaylistController::class, 'store'])->name('playlist.store');
-Route::get('/playlist/destroy/{playlist}',[PlaylistController::class, 'destroy'])->name('playlist.destroy');
-
-Route::get('/song/all',[SongController::class, 'index'])->name('song.index');
-Route::get('/song/create',[SongController::class, 'create'])->name('song.create');
-Route::post('/song/store',[SongController::class, 'store'])->name('song.store');
-Route::get('/song/destroy/{song}',[SongController::class, 'destroy'])->name('song.destroy');
+    Route::get('/song/all',[SongController::class, 'index'])->name('song.index');
+    Route::get('/song/create',[SongController::class, 'create'])->name('song.create');
+    Route::post('/song/store',[SongController::class, 'store'])->name('song.store');
+    Route::get('/song/destroy/{song}',[SongController::class, 'destroy'])->name('song.destroy');
+});

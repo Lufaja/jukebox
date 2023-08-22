@@ -29,6 +29,12 @@ class PlaylistController extends Controller
      */
     public function store(Request $request)
     {
+        $message = [
+            'required' => 'Je bent :attribute vergeten'
+        ];
+        $request->validate([
+            'playlistName' => 'required'
+        ], $message);
         Playlist::create([
             "name"=>$request['playlistName']
         ]);

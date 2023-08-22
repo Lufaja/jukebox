@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Song;
 use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SongController extends Controller
 {
@@ -32,6 +33,19 @@ class SongController extends Controller
      */
     public function store(Request $request)
     {
+        $message = [
+            'required' => 'Je bent :attribute vergeten',
+            'date' => 'Dit moet een datum zijn',
+            'integer' => 'dit moet een getal zijn'
+        ];
+        $request->validate([
+            'name' => ['required'],
+            'author' => 'required',
+            'releasedate' => 'required|date',
+            'duration' => 'required|interger',
+            'genre_id' => 'required'
+        ], $message);
+
         Song::create([
             "name"=>$request['name'],
             "author"=>$request['author'],

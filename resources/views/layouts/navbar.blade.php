@@ -23,7 +23,14 @@
             <a href="{{route('playlist.index')}}">playlist</a>
         </div>
         <div style="position: absolute;right: 20px;">
-            <a>login</a>
+            @if(Auth::user() != null)
+                <a href="{{route('dashboard')}}">{{Auth::user()->name}}</a>
+            @else
+                <a href="{{route('login') }}">Log in</a>
+                <a href="{{route('register') }}">Register</a>
+            @endif
+
+
         </div>
     </section>
     <main>
