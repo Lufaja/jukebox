@@ -10,7 +10,7 @@
 <body>
     <section class="navbar">
         <div>
-            <a id="logo">Jukebox</a>
+            <a href="{{route('home')}}" id="logo">Jukebox</a>
         </div>
 
         <div>

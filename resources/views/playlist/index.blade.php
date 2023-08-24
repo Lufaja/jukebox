@@ -1,6 +1,5 @@
 @extends('layouts/navbar')
 @section('content')
-
     <h1>Dit is een totaaloverzicht van alle playlist</h1>
     <ul>
         @foreach($playlists as $playlist)

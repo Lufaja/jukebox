@@ -12,10 +12,10 @@ class SongController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $songs = Song::all();
-        return view('song.index', ['songs' => $songs]); 
+        return view('song.index', ['songs' => $songs, 'request' => $request]); 
     }
 
     /**
@@ -42,7 +42,7 @@ class SongController extends Controller
             'name' => ['required'],
             'author' => 'required',
             'releasedate' => 'required|date',
-            'duration' => 'required|interger',
+            'duration' => 'required|integer',
             'genre_id' => 'required'
         ], $message);
 

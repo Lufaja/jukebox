@@ -16,7 +16,7 @@
         @enderror
         <br>
         <label>Vul een author voor het liedje in</label>
-        <input name="author" type="text">
+        <input name="author" type="text" value="{{old('author')}}">
         @error('author')
             <span style='color:red'>{{$message}}</span>
         @enderror
@@ -32,13 +32,13 @@
         @enderror
         <br>
         <label>Vul een releasedate voor het liedje in</label>
-        <input name="releasedate" type="date">
+        <input name="releasedate" type="date" value="{{old('releasedate')}}">
         @error('releasedate')
             <span style='color:red'>{{$message}}</span>
         @enderror
         <br>
         <label>Vul een duratie voor het liedje in</label>
-        <input name="duration" type="number">
+        <input name="duration" type="number" value="{{old('duration')}}">
         @error('duration')
             <span style='color:red'>{{$message}}</span>
         @enderror
