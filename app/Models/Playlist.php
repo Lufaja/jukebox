@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Playlist extends Model
 {
     protected $fillable = [
-        'name'
+        'name',
+        'user_id'
     ];
 
 
@@ -16,5 +17,8 @@ class Playlist extends Model
 
     public function songs(){
         return $this->belongsToMany(Song::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }

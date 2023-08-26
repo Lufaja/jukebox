@@ -15,7 +15,8 @@ class SongController extends Controller
     public function index(Request $request)
     {
         $songs = Song::all();
-        return view('song.index', ['songs' => $songs, 'request' => $request]); 
+        $genres = Genre::all();
+        return view('song.index', ['songs' => $songs, 'genres' => $genres, 'request' => $request]); 
     }
 
     /**
@@ -45,7 +46,7 @@ class SongController extends Controller
             'duration' => 'required|integer',
             'genre_id' => 'required'
         ], $message);
-
+        
         Song::create([
             "name"=>$request['name'],
             "author"=>$request['author'],

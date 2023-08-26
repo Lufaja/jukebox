@@ -22,12 +22,12 @@
         @enderror
         <br>
         <label>Vul een genre voor het liedje in</label>
-        <select name="genre">
+        <select name='genre_id'>
             @foreach($genres as $genre)
-            <option @if(old('genre') == $genre->id) selected @endif value='{{$genre->id}}'>{{$genre->name}}</option>
+            <option @if(old('genre_id') == $genre->id) selected @endif value='{{$genre->id}}'>{{$genre->name}}</option>
             @endforeach
         </select>
-        @error('genre')
+        @error('genre_id')
             <span style='color:red'>{{$message}}</span>
         @enderror
         <br>
