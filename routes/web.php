@@ -50,6 +50,7 @@ Route::middleware([IsLoggedIn::class])->group(function(){
     Route::get('/song/overview',[SongController::class, 'index'])->name('song.index');
     Route::get('/song/create',[SongController::class, 'create'])->name('song.create');
     Route::post('/song/store',[SongController::class, 'store'])->name('song.store');
+    Route::post('/song/filter',[SongController::class, 'filter'])->name('song.filter');
     Route::get('/song/destroy/{song}',[SongController::class, 'destroy'])->name('song.destroy');
 
     Route::get('/home',[HomeController::class, 'index'])->name('home');

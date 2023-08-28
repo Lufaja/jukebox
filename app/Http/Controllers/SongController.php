@@ -89,4 +89,13 @@ class SongController extends Controller
         Song::destroy($song['id']);
         return redirect(route('song.index'));
     }
+    
+    public function filter(Request $request)
+    {
+        if ($request->genre == 'all'){
+            return redirect(route('song.index'));
+        } else{
+            return redirect(route('song.index',['filter' => $request->genre]));
+        }
+    }
 }
