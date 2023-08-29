@@ -18,7 +18,7 @@ class PlaylistFactory extends Factory
     {
         return [
             'name' => fake()->word,
-            'user_id' => 1
+            'user_id' => fake()->numberBetween(1,5)
         ];
     }
 }

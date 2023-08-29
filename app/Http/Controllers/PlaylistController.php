@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Playlist;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class PlaylistController extends Controller
@@ -36,7 +37,8 @@ class PlaylistController extends Controller
             'playlistName' => 'required'
         ], $message);
         Playlist::create([
-            "name"=>$request['playlistName']
+            "name"=>$request['playlistName'],
+            "user_id"=>Auth::user()->id
         ]);
         return redirect(route('playlist.index'));
     }
