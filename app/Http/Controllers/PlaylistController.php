@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Playlist;
+use App\Models\Song;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -92,6 +93,31 @@ class PlaylistController extends Controller
     {
         $playlist->songs()->detach();
         Playlist::destroy($playlist['id']);
+        return redirect(route('playlist.index'));
+    }
+
+    public function addSong(Playlist $playlist)
+    {
+        $avoid = $playlist->songs()->pluck('song_id');
+        $songs = Song::whereNotIn('id', $avoid)->get();
+        return view('playlist.addSong', ["playlist" => $playlist, "songs" => $songs]);
+    }
+
+    public function storeSong(Request $request, Playlist $playlist)
+    {
+        $message = [
+            'required' => 'Je bent :attribute vergeten'
+        ];
+        $request->validate([
+            'song_id' => 'required'
+        ], $message);
+        $playlist->songs()->attach($request['song_id']);
+        return redirect(route('playlist.index'));
+    }
+
+    public function removeSong(Request $request, Playlist $playlist)
+    {
+        $playlist->songs()->detach($request['song_id']);
         return redirect(route('playlist.index'));
     }
 }

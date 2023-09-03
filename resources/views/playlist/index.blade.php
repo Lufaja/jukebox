@@ -7,13 +7,13 @@
                 $tijd = current($tijden);
                 next($tijden);
             @endphp
-            <li>{{ $playlist->name }} || {{$tijd}} <a href="{{ route('playlist.destroy', ['playlist' => $playlist->id]) }}">X</a><a href="">+</a></li>
+            <li>{{ $playlist->name }} || {{$tijd}} <a href="{{ route('playlist.destroy', ['playlist' => $playlist->id]) }}">X</a> <a href="{{route('playlist.addSong', ['playlist' => $playlist->id])}}">+</a></li>
             <ul>
                 @foreach ($playlist->songs as $song)
-                <li>{{ $song->name }}</li>
+                <li>{{ $song->name }} <a style="text-decoration: none" href="{{route('playlist.removeSong', ['playlist' => $playlist, 'song_id' => $song->id])}}">―</a></li>
                 @endforeach
             </ul>
         @endforeach
     </ul>
-    <a href="{{ route('playlist.create') }}">create new</a>
+    <a href="{{ route('playlist.create') }}">create new playlist</a>
 @endsection
