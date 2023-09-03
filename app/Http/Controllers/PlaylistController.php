@@ -90,6 +90,7 @@ class PlaylistController extends Controller
      */
     public function destroy(Playlist $playlist)
     {
+        $playlist->songs()->detach();
         Playlist::destroy($playlist['id']);
         return redirect(route('playlist.index'));
     }
