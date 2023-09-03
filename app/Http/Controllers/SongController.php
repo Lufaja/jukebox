@@ -50,7 +50,7 @@ class SongController extends Controller
         Song::create([
             "name"=>$request['name'],
             "author"=>$request['author'],
-            "genre_id"=>$request['genre'],
+            "genre_id"=>$request['genre_id'],
             "releasedate"=>$request['releasedate'],
             "duration"=>$request['duration']
         ]);

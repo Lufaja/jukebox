@@ -12,5 +12,5 @@
         </ul>
     @endforeach
     </ul>
-    <a href="{{route('genre.create')}}">create new</a>
+    <a href="{{route('genre.create')}}">create new genre</a>
 @endsection

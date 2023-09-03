@@ -47,4 +47,19 @@
         <input type="submit" value="Send me!">
     </form>
 </body>
+<style>
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+}
+</style>
 </html>
