@@ -14,7 +14,25 @@ class PlaylistController extends Controller
     public function index()
     {
         $playlists = Playlist::all();
-        return view('playlist.index', ['playlists' => $playlists]);
+        $playlists = $playlists->where('user_id', '=', Auth::user()->id);
+        $tijden = [];
+
+        foreach($playlists as $playlist){
+            $total = 0;
+            foreach($playlist->songs as $song) {
+                $total += $song->duration;
+            }
+            $minuten = intdiv($total,60);
+            if ($minuten>=60) {
+                $x = $minuten%60;
+                $uren = ($minuten-$x)/60;
+                $tijd = strval($uren) . " uur, " . strval($x) ." min.";
+            } else{
+                $tijd = $minuten . " min.";
+            }
+            array_push($tijden, $tijd);
+        }
+        return view('playlist.index', ['playlists' => $playlists, 'tijden' => $tijden]);
     }    
 
     /**
