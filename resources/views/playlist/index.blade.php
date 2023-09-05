@@ -1,6 +1,9 @@
 @extends('layouts/navbar')
 @section('content')
     <h1>Playlists van {{ Auth::user()->name }}</h1>
+    <form action="{{ route('playlist.create') }}">
+        <input type="submit" value="Create new playlist" />
+    </form>
     <ul>
         @foreach($playlists as $playlist)
             @php
@@ -15,5 +18,4 @@
             </ul>
         @endforeach
     </ul>
-    <a href="{{ route('playlist.create') }}">create new playlist</a>
 @endsection

@@ -2,17 +2,23 @@
 @endpush
 @extends('layouts/navbar')
 @section('content')
-    @if ($request->query('filter') != null)
-        <script>
-            {{ $selected = $request->query('filter') }}
-            {{ $songs = $songs->where('genre_id', '=', $request->query('filter')) }}
-        </script>
+@if ($request->query('filter') != null)
+<script>
+    {{ $selected = $request->query('filter') }}
+    {{ $songs = $songs->where('genre_id', '=', $request->query('filter')) }}
+    </script>
         <h1>Songs with the {{ head(head($songs))->genre->name }} genre</h1>
-    @else
+        <form action="{{ route('song.create') }}">
+            <input type="submit" value="Create new song" />
+        </form>
+        @else
         <script>
             {{ $selected = 'all' }}
-        </script>
+            </script>
         <h1>Dit is een totaaloverzicht van alle songs</h1>
+        <form action="{{ route('song.create') }}">
+            <input type="submit" value="Create new song" />
+        </form>
     @endif
     <form method="post" action="{{ route('song.filter') }}">
         @csrf
@@ -30,5 +36,4 @@
                 @endforeach <a href="{{ route('song.destroy', ['song' => $song->id]) }}">X</a></li>
         @endforeach
     </ul>
-    <a href="{{ route('song.create') }}">create new song</a>
 @endsection
